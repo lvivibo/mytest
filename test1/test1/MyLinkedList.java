@@ -17,17 +17,40 @@ public class MyLinkedList {
 			current = current.next;
 		}
 	}
+	
 	public void  print(){
 		current = head;
 		while(current!=null){
+			//System.out.println("head"+head.val+",");
 			System.out.print(current.val+",");
 			current = current.next;
+			
+			//System.out.print(current.val+",");
 		}
 	
 		
 	
 	}
-	class Node{
+	///1,2
+	public Node reverseNode(Node head){
+		if(head ==null||head.next==null){
+			return head;
+		}
+		current = head;
+		Node reversehead =null;
+		while(current!=null){			
+			Node next = current.next;
+			current.next = current;
+			reversehead = current;
+			current = next;
+			//System.out.println("test"+current.val);
+		}
+		return reversehead;
+		
+		
+	}
+	
+	public class Node{
 		int val;
 		Node next;
 		public Node(int val) {
@@ -54,10 +77,12 @@ public class MyLinkedList {
 		//List list1 = new LinkedList();
 		//list1.subList(fromIndex, toIndex);
 		MyLinkedList list = new MyLinkedList();
+		
 		list.add(1);
-		/*list.add(2);
+		list.add(2);
 		list.add(3);
-		list.add(4);*/
+		list.add(4);
+		list.reverseNode(list.head);
 		list.print();
 		
 	}
