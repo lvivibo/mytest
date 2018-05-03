@@ -6,25 +6,23 @@ import java.util.List;
 public class MyLinkedList {
 	
 	Node head;
-	Node current;
 	
 	public void  add(int data){
 		if(null==head){
 			head = new Node(data);
-			current = head;
 		}else{
-			current.next = new Node(data);
-			current = current.next;
+			head.next = new Node(data);
+			head = head.next;
 		}
 	}
 	
 	public void  print(){
-		current = head;
+		Node current = head;
 		while(current!=null){
 			//System.out.println("head"+head.val+",");
 			System.out.print(current.val+",");
 			current = current.next;
-			
+			//Node currentN = current;
 			//System.out.print(current.val+",");
 		}
 	
@@ -32,22 +30,69 @@ public class MyLinkedList {
 	
 	}
 	///1,2
-	public Node reverseNode(Node head){
+	public void reverseNode(){
 		if(head ==null||head.next==null){
-			return head;
+			return ;
 		}
-		current = head;
+		Node current = head;
 		Node reversehead =null;
+		Node next = null;
 		while(current!=null){			
-			Node next = current.next;
-			current.next = current;
+			next = current.next;
+			current.next = reversehead;
 			reversehead = current;
 			current = next;
 			//System.out.println("test"+current.val);
 		}
-		return reversehead;
+		head = reversehead;
+		//return reversehead;
 		
 		
+	}
+	/*Input: 1->2->3->4->5->NULL, m = 2, n = 4
+			Output: 1->4->3->2->5->NULL*/
+	public void reverseBetween(Node head, int m, int n) {
+		if(head ==null||head.next==null){
+			return ;
+		}	
+		Node last_current =null;
+		Node next = null;
+		int m_count=1;
+		int n_count=1;
+		Node pre_m = null;
+		Node m_node = null;		
+////////////n
+	/*Input: 1->2->3->4->5->NULL, m = 2, n = 4
+	 * 
+	Output: 1->4->3->2->5->NULL*/
+		Node current = head;
+		while(current!=null){
+			next = current.next;
+			if(m-1==m_count){ 
+				pre_m=current;
+			}
+			if(m==m_count){
+				m_node = current;
+				last_current = m_node;
+			}
+			if(m_count>m&&n_count<n){
+				current.next = last_current;
+			}
+			if(n_count==n){
+				pre_m.next = current;
+				m_node.next = current.next;			
+				current.next = last_current;
+				
+			}
+			last_current = current;
+			current = next;
+			m_count++;
+			n_count++;
+			
+		}
+		
+		//return reversehead;
+	    
 	}
 	
 	public class Node{
@@ -82,7 +127,10 @@ public class MyLinkedList {
 		list.add(2);
 		list.add(3);
 		list.add(4);
-		list.reverseNode(list.head);
+		list.add(5);
+		list.add(6);
+		//list.reverseNode();
+		list.reverseBetween(list.head,2,5);
 		list.print();
 		
 	}
