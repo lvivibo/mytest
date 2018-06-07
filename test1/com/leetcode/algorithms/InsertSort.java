@@ -4,7 +4,7 @@ public class InsertSort {
 	
 	void insertSort(int[] a) {
 		for (int i = 0; i < a.length; i++) {
-			if(b>a[i])
+		//	if(b>a[i])
 		}
 	}
 	public static void main(String[] args) {
