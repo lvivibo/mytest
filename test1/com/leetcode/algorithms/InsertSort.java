@@ -27,7 +27,7 @@ public class InsertSort {
 	public static void main(String[] args) {
 	     // int[] a= {1,2,3,8,9,4};
 		int[] a = { 2, 1, 9, 4, 6, 8, 5, 10 };
-		int i = 6;
+		//int i = 6;
 		InsertSort insertSort = new InsertSort();
 		insertSort.sort(a);
 		
