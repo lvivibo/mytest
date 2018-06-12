@@ -1,7 +1,5 @@
 package com.leetcode.algorithms;
 
-import com.java.designpattern.Sorter;
-
 public class SelectionSort {
 	
 	
