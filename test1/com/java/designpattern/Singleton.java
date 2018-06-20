@@ -1,7 +1,5 @@
 package com.java.designpattern;
 
-import sun.security.jca.GetInstance.Instance;
-
 public class Singleton {
 	/*private Singleton(){
 		System.out.println("xxxx");
