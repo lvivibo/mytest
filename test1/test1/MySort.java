@@ -2,6 +2,8 @@ package test1;
 
 import java.util.concurrent.ForkJoinPool;
 
+import com.sun.scenario.effect.Merge;
+
 public class MySort {
 	////8,2,7,1,4,3,1
 //	8
@@ -80,8 +82,111 @@ public class MySort {
 			a[i] = get;
 		}
 	}
-	/// a ={3,5,7,9,11,13};
-	
+	static void selectionSort(int[] a){
+		for(int k=a.length-1;k>=1;k--) {
+			int max = a[0];
+			int count =0;
+			for (int i = 1; i <= k; i++) {
+				if(a[i]>max) {
+					count = i;
+					max = a[count];
+					
+				}
+			}
+			int temp = a[k];
+			a[k] = a[count];
+			a[count] =temp;
+		}
+		
+	}
+	private void  helpSort(int begin,int mid,int end) {
+		mid = (begin+end)/2;
+		
+	}
+	public static int[] mergeArray(int[] a,int[] b) {
+		int[] c =new  int[a.length+b.length];
+		int a_count = 0;
+		int b_count = 0;
+		//System.out.println(c.length);
+		for (int j = 0; j < c.length; j++) {
+			if(j>a.length&&j<b.length) {			
+				c[j] = b[b_count];
+				b_count++;
+				continue;
+			}
+			if(j>b.length&&j<a.length) {
+				c[j] = a[a_count];
+				a_count++;
+				continue;
+			}
+			if(j<a.length&&j<b.length&&a[j]>b[j]) {
+				c[j] = a[a_count];
+				a_count++;
+				continue;
+			}
+			if(j<a.length&&j<b.length&&b[j]>a[j]) {
+				c[j] = b[b_count];
+				b_count++;
+				continue;
+			}
+		}
+		
+		return c;
+	}
+	static void MergeSort(int[] a){
+		for(int k=a.length-1;k>=1;k--) {
+			int max = a[0];
+			int count =0;
+			for (int i = 1; i <= k; i++) {
+				if(a[i]>max) {
+					count = i;
+					max = a[count];
+					
+				}
+			}
+			int temp = a[k];
+			a[k] = a[count];
+			a[count] =temp;
+		}
+		
+	}
+	/// a ={100,3,5,4,9,14,15,13};
+	static  void insertSortB(int[] a) {
+		for (int i = 1; i <= a.length-1; i++) {
+			int insert = a[i];
+			int k = i;
+			if(insert>=a[k-1]) {
+				continue;
+			}
+			while(k>=1&&insert<a[k-1] ) {
+				a[k] = a[k-1];
+				k--;
+			}
+			a[k] = insert;
+		}
+		
+	}
+	static  void shellSortB(int[] a) {
+		
+		int d = a.length/2;
+		while(d>0) {
+			for (int i = d; i <= a.length-1; i++) {
+				int insert = a[d];
+				int k = d;
+				if(insert>=a[k-d]) {
+					continue;
+				}
+				while(k>=d&&insert<a[k-d] ) {
+					a[k] = a[k-d];
+					k=k-d;
+				}
+				a[k] = insert;
+			}
+			d = d/2;
+		}
+		
+		
+	}
 		static void insertBSort(int[] a){
 			for(int k=1;k<a.length;k++){
 				int get = a[k];
@@ -113,16 +218,16 @@ public class MySort {
 			}*/
 			int gap = a.length/2;
 			while(gap>0){
-				for(int k=1;k<a.length;k++){
-					int get = a[k];
+				for(int k=gap;k<a.length;k++){
+					int insert = a[k];
 					int i=k;
-					while(i>=gap&&get<a[i-gap]){
+					while(i>=gap&&insert<a[i-gap]){
 						int temp = a[i-gap];
 						a[i-gap] = a[i];
 						a[i] = temp;
-						i=i-gap;				
+						i-=gap;				
 					}
-					a[i] = get;
+					a[i] = insert;
 				}
 				gap =gap/2;
 			}
@@ -201,10 +306,13 @@ public class MySort {
 		//8
 		//int[] a = {1,8,4,7,6,9};
 		int test =6;
-		int[] a ={3,5,7,9,11,13};
+		int[]  a ={100,3,5,7,9,14,15,13,100,7,9};
+		int[] b = {1,2,3};
+		int[] c = {4,5,6};
 		//int[] a={1,3,5};
-		MySort.insertBSort(a);
-		MySort.print(a);
+		//MySort.selectionSort(a);
+		MySort.print(MySort.mergeArray(b,c));
+		//MySort.print(a);
 	   //System.out.println("xxxxxxxxxxxxxxxx");
 	  // System.out.println(MySort.bSearch1(a,0,a.length-1,4));
 	}
