@@ -1,12 +1,12 @@
 package test1;
 
-
+import com.leetcode.algorithms.Sorter;
 
 public class FastSort {
 	
 	
 	private static void maxHeapify(int[] data,int heapSize,int index){
-		//µ±Ç°µãÓë×óÓÒ×Ó½Úµã±È½Ï
+		//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó½Úµï¿½È½ï¿½
 		int left = (index << 1) + 1;
 		int right = (index << 1) + 2;
 		int largest = index;
@@ -112,7 +112,7 @@ public class FastSort {
 	}
 	////a{1,4,6} ;      b{2,5,8}
 ////a = { 1,4,6, 2,5,8};
-	///A[left...mid]ºÍA[mid+1...right]
+	///A[left...mid]ï¿½ï¿½A[mid+1...right]
 
 	   static void merge(int a[], int left, int mid, int right){
 		   int len = right - left + 1;
@@ -209,7 +209,7 @@ public class FastSort {
 		fastSort1(a,begin+1,e);
 		//printA(a);
 	}
-	private static void  printA(int[] a){
+	 static void  printA(int[] a){
 		
 		for (int x=0; x<a.length; x++){
 			System.out.print(a[x]+",");
@@ -217,13 +217,38 @@ public class FastSort {
 		}
 		System.out.println();
 	}
-	private void swap(int a,int b){
+	public void swap(int a,int b){
 		int temp = a;
 		a = b;
 		b = temp;
 	}
-	
-
+	//public void swap()
+	 void  insertSort1(int[] a) {
+		if(a.length==1) {
+			return ;
+		}
+		for(int i=1;i<=a.length-1;i++) {
+			int insert = a[i];			
+			int k = 0;
+			while(insert>=a[k]&&k<=i-1) {
+				k++;
+			}
+			int temp2 = i;
+			//System.out.println("k"+k);
+			while(temp2>=1&&temp2>k) {
+				//swap(a[temp2-1],a[temp2]);	
+				int temp3 = a[temp2-1];
+				a[temp2-1] = a[temp2];
+				a[temp2] = temp3;
+				temp2--;
+			}
+			
+		}
+		printA(a);
+		
+		
+				
+	}
 	public static void main(String[] args) throws CloneNotSupportedException {
 		
 		///18,15,7,13,11,6,3,4,8,7,
@@ -245,42 +270,15 @@ public class FastSort {
 		//1
 		//4,6
 		//2,5,7,8
-		int[] b = { 7,8, 3, 19, 15, 6, 7, 4, 13, 11};
+		//int[] b = { 7,8, 3, 19, 15, 6, 7, 4, 13, 11};
+		int[] b = { 8,7};
 		//FastSort.fastSort1(a, 0,a.length-1);
-		FastSort.heapSort(b);
-		/*for (int x=0; x<b.length; x++){
-			System.out.print(b[x]+",");
-			//System.out.println("test");
-		}*/
-		/*System.out.println("----------------");
-		Singleton singleton = new Singleton();
-		User u1 = new User();
-		User u2 = new User();
-		u1.id=1;
-		u2.id=2;
-		if(u1.equals(u2)){
-			System.out.println("xxxxxxxxxxxxxxxxxxxx");
-		}
-		*/
-/*		Teacher t = new Teacher();
-		t.setName("xxxxÀÏÊ¦");
-		u.id = 3;
-		u.name ="dddd";
-		u.t = t;
+		//FastSort.heapSort(b);
+		FastSort testSort = new FastSort();
+		testSort.insertSort1(b);
 		
-		User myU = u.clone();
-		System.out.println(myU);
-		t.setName("ÀÏÊ¦");
-		System.out.println(myU);
-		Integer i = 300;
-		Integer j = 300;
-		if(i==j){
-			//i.intValue()
-			System.out.println("xxxxxxxxxxxxxxxxxxxx");
-		}
-*/		
-		///current<<1)+1
-		//	current<<1)+1
+		
+	
 		
 	}
 	
