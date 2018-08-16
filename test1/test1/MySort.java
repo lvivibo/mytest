@@ -1,8 +1,5 @@
 package test1;
 
-import java.util.concurrent.ForkJoinPool;
-
-import com.sun.scenario.effect.Merge;
 
 public class MySort {
 	////8,2,7,1,4,3,1
@@ -99,41 +96,136 @@ public class MySort {
 		}
 		
 	}
-	private void  helpSort(int begin,int mid,int end) {
-		mid = (begin+end)/2;
-		
-	}
-	public static int[] mergeArray(int[] a,int[] b) {
-		int[] c =new  int[a.length+b.length];
-		int a_count = 0;
-		int b_count = 0;
-		//System.out.println(c.length);
-		for (int j = 0; j < c.length; j++) {
-			if(j>a.length&&j<b.length) {			
-				c[j] = b[b_count];
-				b_count++;
-				continue;
-			}
-			if(j>b.length&&j<a.length) {
-				c[j] = a[a_count];
-				a_count++;
-				continue;
-			}
-			if(j<a.length&&j<b.length&&a[j]>b[j]) {
-				c[j] = a[a_count];
-				a_count++;
-				continue;
-			}
-			if(j<a.length&&j<b.length&&b[j]>a[j]) {
-				c[j] = b[b_count];
-				b_count++;
-				continue;
-			}
-		}
+	public int[] mergeSort(int[] a) {
+		if(a.length==1) return a;
+		int[] c = new int[a.length];
+		helpSort(0,a.length-1,a,c);
 		
 		return c;
 	}
-	static void MergeSort(int[] a){
+	//{0,1,2,3,4,5,6,7,8,9}
+	public void  helpSort(int begin,int end,int[] a,int[] c) {
+		int mid = (end+begin)/2;
+		if(begin>=end) {
+			//System.out.println("begin"+begin+"end"+end+a[begin]);
+			return;
+		}
+		
+		/*if(mid<=0) {
+			return ;
+		}*/
+		//System.out.pri
+			helpSort(begin,mid,a,c);
+			helpSort(mid+1,end,a,c);
+			mergeArray(begin,end,a,c);
+			//this.print(c);
+		
+	}	
+	public void mergeArray(int begin,int end,int[]a,int[] c) {
+		int mid = (begin+end)/2;
+		int a_count =begin;
+		int b_count = mid+1;
+		int c_count = 0;
+		if(a_count>mid&&b_count>end) {
+			return ;
+		}
+		while(a_count<=mid&&b_count<=end) {
+			if(a[a_count]<=a[b_count]) {
+				c[c_count]=a[a_count];
+				c_count++;
+				a_count++;
+				//continue;
+				
+			}
+			if(a[a_count]>a[b_count]) {
+				c[c_count]=a[b_count];
+				c_count++;
+				b_count++;
+				
+			}
+		}
+		while (a_count > mid &&b_count<=end) {
+			c[c_count] = a[b_count];
+
+			b_count++;
+
+			c_count++;
+
+			
+		}
+		while (b_count > end &&a_count<=mid) {
+
+			c[c_count] = a[a_count];
+
+			a_count++;
+
+			c_count++;
+
+			
+		}
+		for (int i = 0; i < c_count; i++) {
+			a[begin+i] = c[i];
+			
+		}	
+			
+		
+		
+		
+	}
+	
+	
+	public void mergeArray1(int begin,int mid,int end,int[]a,int[] c) {
+		int a_count = begin;
+		int b_count = mid+1;
+		int c_count = 0;
+		
+		while(c_count<c.length) {
+			
+			
+			/*if ((a_count <= mid && b_count <= end) && a[a_count] == a[b_count]) {
+
+				c[c_count++] = a[b_count++];
+				c[c_count++] = a[a_count++];
+				continue;
+			}*/
+			/*if ((a_count <= mid && b_count <= end) && a[a_count] >= a[b_count]) {
+
+				c[c_count++] = a[b_count++];
+
+				continue;
+			}*/
+			
+			if (a[a_count] >= a[b_count]) {
+
+			c[c_count++] = a[b_count++];
+
+			continue;
+		}
+			if (a[a_count] < a[b_count]) {
+				c[c_count++] = a[a_count++];
+
+				continue;
+			}
+
+			if(b_count<=end) {
+				//System.out.println(b_count);
+				c[c_count++] = a[b_count++];
+				continue;
+				
+			}
+			if(a_count<=mid) {
+				c[c_count++] = a[a_count++];
+	
+				continue;
+				
+			}
+			c_count++;
+			
+		}
+		
+		
+	}
+	/*static void MergeSort(int[] a){
 		for(int k=a.length-1;k>=1;k--) {
 			int max = a[0];
 			int count =0;
@@ -149,7 +241,7 @@ public class MySort {
 			a[count] =temp;
 		}
 		
-	}
+	}*/
 	/// a ={100,3,5,4,9,14,15,13};
 	static  void insertSortB(int[] a) {
 		for (int i = 1; i <= a.length-1; i++) {
@@ -306,13 +398,20 @@ public class MySort {
 		//8
 		//int[] a = {1,8,4,7,6,9};
 		int test =6;
-		int[]  a ={100,3,5,7,9,14,15,13,100,7,9};
-		int[] b = {1,2,3};
-		int[] c = {4,5,6};
+		int[]  a ={100,7,1};
+		//int[] a = {1,3,2,5};
+		//int[]  a ={1000,6};
+		int[] x= new int[a.length];
+		//int[] b = {1,5,6,7};
+		//int[] c = {2,8,10};
 		//int[] a={1,3,5};
 		//MySort.selectionSort(a);
-		MySort.print(MySort.mergeArray(b,c));
-		//MySort.print(a);
+		MySort testSort = new MySort();
+	    int[] c =testSort.mergeSort(a);
+		MySort.print(c);
+		//System.out.println("mid"+(0+11)/2);
+		//testSort.mergeArray(0,a.length-1, a, x);
+		//MySort.print(x);
 	   //System.out.println("xxxxxxxxxxxxxxxx");
 	  // System.out.println(MySort.bSearch1(a,0,a.length-1,4));
 	}
