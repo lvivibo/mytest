@@ -1,5 +1,6 @@
 package test1;
 
+import com.sun.xml.internal.org.jvnet.fastinfoset.sax.helpers.FastInfosetDefaultHandler;
 
 public class MySort {
 	////8,2,7,1,4,3,1
@@ -131,7 +132,10 @@ public class MySort {
 		}
 		while(a_count<=mid&&b_count<=end) {
 			if(a[a_count]<=a[b_count]) {
+				
+				
 				c[c_count]=a[a_count];
+				
 				c_count++;
 				a_count++;
 				//continue;
@@ -223,6 +227,44 @@ public class MySort {
 			
 		}
 		
+		
+	}
+	public  void fastSort(int[] a,int begin,int end) {
+		
+		if(begin < end) {
+			int mid =findFlag(a,begin,end);
+			//System.out.println("mid"+mid);
+			fastSort(a,begin,mid-1);
+			fastSort(a,mid+1,end);
+		}
+		
+	}
+	
+	//int[]  a ={105,104,1,103,101,99,21};
+	public int  findFlag(int[] a,int begin,int end) {
+		int flag = a[begin];
+		int left=begin;
+		int right = end;
+		int mid =begin;
+		while(left<right) {
+			
+			while(right>left&&a[right]>=flag) {
+				right--;
+			}
+			int temp2 = a[right];
+			a[right]= a[left];
+			a[left]= temp2;
+		
+			while(right>left&&a[left]<=flag) {
+				
+				left++;
+			}
+			int temp1 = a[left];
+			a[left] = a[right];
+			a[right]=temp1;
+			
+		}
+		return left;
 		
 	}
 	/*static void MergeSort(int[] a){
@@ -387,18 +429,16 @@ public class MySort {
 		//if(i<a[mid]) 
 		//return -1;
 	}
-	static void fastSort(int[] a,int begin,int end){
-		
-	}
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		///// 
 		////3
 		///4,1
 		//1,1,2,7
 		//8
 		//int[] a = {1,8,4,7,6,9};
-		int test =6;
-		int[]  a ={100,7,1};
+		//int test =6;
+		int[]  a ={100,98,1,103,101,99,21};
 		//int[] a = {1,3,2,5};
 		//int[]  a ={1000,6};
 		int[] x= new int[a.length];
@@ -407,8 +447,9 @@ public class MySort {
 		//int[] a={1,3,5};
 		//MySort.selectionSort(a);
 		MySort testSort = new MySort();
-	    int[] c =testSort.mergeSort(a);
-		MySort.print(c);
+	    System.out.println(testSort.findFlag(a,0,a.length-1));
+		//testSort.findFlag(a,0,a.length-1);
+		MySort.print(a);
 		//System.out.println("mid"+(0+11)/2);
 		//testSort.mergeArray(0,a.length-1, a, x);
 		//MySort.print(x);
