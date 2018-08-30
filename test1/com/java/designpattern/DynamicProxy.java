@@ -1,10 +1,10 @@
-package com.java.designpattern;
+/*package com.java.designpattern;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.sun.glass.ui.TouchInputSupport;
+import com.leetcode.algorithms.Sorter;
 
 public class DynamicProxy implements InvocationHandler {
 
@@ -35,3 +35,4 @@ public class DynamicProxy implements InvocationHandler {
 	}
 
 }
+*/

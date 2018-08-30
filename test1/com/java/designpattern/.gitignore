@@ -6,3 +6,8 @@
 /StaticBubbleProxy.class
 /DynamicProxy.class
 /Factory.class
+/Observerable.class
+/Observer.class
+/WechatServer.class
+/User.class
+/Test.class

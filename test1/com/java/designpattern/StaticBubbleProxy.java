@@ -1,6 +1,8 @@
-package com.java.designpattern;
+/*package com.java.designpattern;
 
-public class StaticBubbleProxy implements Sorter{
+import com.leetcode.algorithms.Sorter;
+
+public class StaticBubbleProxy {
 	
 	private Sorter tartget = null;
 	
@@ -11,7 +13,7 @@ public class StaticBubbleProxy implements Sorter{
 
 	
 
-	@Override
+	//@Override
 	public void sort(int[] a) {
 		System.out.println("do something before sort method");
 		tartget.sort(a);
@@ -19,7 +21,7 @@ public class StaticBubbleProxy implements Sorter{
 		
 	}
 	
-	@Override
+	//@Override
 	public void show(int[] a) {
 		System.out.println("beging....");
 		tartget.show(a);
@@ -44,3 +46,4 @@ public class StaticBubbleProxy implements Sorter{
 
 
 }
+*/

@@ -239,7 +239,16 @@ public class MySort {
 		}
 		
 	}
-	
+	public void  bucketSort(int[] a,int[] bucket) {
+		if(bucket==null||bucket.length==0) {
+			bucket = new int[100];
+		}
+		//int[] bucket = new int[100000];
+		for (int i = 0; i < a.length; i++) {
+			bucket[a[i]]++;
+		}
+		
+	}
 	//int[]  a ={105,104,1,103,101,99,21};
 	public int  findFlag(int[] a,int begin,int end) {
 		int flag = a[begin];
@@ -438,18 +447,24 @@ public class MySort {
 		//8
 		//int[] a = {1,8,4,7,6,9};
 		//int test =6;
-		int[]  a ={100,98,1,103,101,99,21};
+		int[]  a ={10,18,11,10,13,1,18};
 		//int[] a = {1,3,2,5};
 		//int[]  a ={1000,6};
 		int[] x= new int[a.length];
 		//int[] b = {1,5,6,7};
-		//int[] c = {2,8,10};
+		//ints[] c = {2,8,10};
 		//int[] a={1,3,5};
 		//MySort.selectionSort(a);
 		MySort testSort = new MySort();
-	    System.out.println(testSort.findFlag(a,0,a.length-1));
+		int[] buckets = new int[100];
+	    testSort.bucketSort(a,buckets);
 		//testSort.findFlag(a,0,a.length-1);
-		MySort.print(a);
+		//MySort.print(buckets);
+		for (int i = 0; i < buckets.length; i++) {
+			for (int j = 1; j <=buckets[i]&&buckets[i]>0; j++) {
+				System.out.print(i+",");
+			}
+		}
 		//System.out.println("mid"+(0+11)/2);
 		//testSort.mergeArray(0,a.length-1, a, x);
 		//MySort.print(x);

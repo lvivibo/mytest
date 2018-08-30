@@ -1,4 +1,6 @@
-package com.java.designpattern;
+/*package com.java.designpattern;
+
+import com.leetcode.algorithms.Sorter;
 
 public class BubbleSort implements Sorter {
 	
@@ -36,3 +38,4 @@ public class BubbleSort implements Sorter {
 	
 
 }
+*/
