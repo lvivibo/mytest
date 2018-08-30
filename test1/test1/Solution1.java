@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sun.glass.ui.TouchInputSupport;
+
 
 
 /////Input: 1->2->3->4->5->NULL, m = 2, n = 4
@@ -13,11 +15,10 @@ public class Solution1 {
 	ListNode head;
 
 	class ListNode {
-		int val;
-		ListNode next;
+		ListNodeData data = new ListNodeData();
 
 		ListNode(int x) {
-			val = x;
+			data.val = x;
 		}
 	}
 	public void add(int x) {
@@ -26,52 +27,52 @@ public class Solution1 {
 			return ;
 		}
 		ListNode cur = head;
-		while(cur.next!=null) {
-			cur = cur.next;
+		while(cur.data.next!=null) {
+			cur = cur.data.next;
 			
 		}
-		cur.next = new ListNode(x);
+		cur.data.next = new ListNode(x);
 		//head = node;
 	}
 	public int get(int x) {
 		ListNode cur = head;
 		for (int i = 0; i <= x; i++) {
-			cur = cur.next;
+			cur = cur.data.next;
 		}
-		return cur.val;
+		return cur.data.val;
 	}
 	public void display() {
 		ListNode cur = head;
-		while(cur.next!=null) {
-			System.out.print(cur.val+",");
-			cur = cur.next;
+		while(cur.data.next!=null) {
+			System.out.print(cur.data.val+",");
+			cur = cur.data.next;
 			
 		}
-		System.out.print(cur.val+",");
+		System.out.print(cur.data.val+",");
 	}
 	
 /////Input: 1->2->3->4->5->NULL, m = 2, n = 4
 /////Output: 1->4->3->2->5->NULL
-	public void reverseBetween( int m, int n) {
+	public ListNode reverseBetween(ListNode this_head, int m, int n) {
 		ListNode prev = null;
-		ListNode cur = head;
+		ListNode cur = this_head;
 		ListNode next = null;
 		ListNode n_node = null;
 		int m_count = 1;
 		int n_count =1;
 		while (m_count<m-1&&cur!=null) {			
-			cur  = cur.next;
+			cur  = cur.data.next;
 			//cur = cur;
 			m_count++;
 			n_count++;
 		}
 		ListNode  m_prev = cur;
-		ListNode m_node = cur.next;
+		ListNode m_node = cur.data.next;
 		cur = m_node;
 		n_count++;
 		while(n_count<=n&&cur!=null) {
-			next = cur.next;
-			cur.next = prev;
+			next = cur.data.next;
+			cur.data.next = prev;
 			prev = cur;
 			if(n_count==n) {
 				n_node = cur; 
@@ -81,9 +82,9 @@ public class Solution1 {
 			n_count++;
 		}
 		ListNode n_next = cur;
-		m_node.next=n_next;
-		m_prev.next=n_node;
-		
+		m_node.data.next=n_next;
+		m_prev.data.next=n_node;
+		return this_head;
 		
 		
 	}
@@ -93,11 +94,11 @@ public class Solution1 {
 		ListNode cur = head;
 		ListNode next = null;
 		while(cur!=null) {
-			if(cur.next==null) {
+			if(cur.data.next==null) {
 				head =cur;
 			}
-			next = cur.next;
-			cur.next = prev;
+			next = cur.data.next;
+			cur.data.next = prev;
 			prev = cur;
 			cur = next;
 		}
@@ -108,8 +109,8 @@ public class Solution1 {
 		ListNode cur = head;
 		ListNode next = null;
 		while(cur!=null) {
-			next = cur.next;
-			cur.next = prev;
+			next = cur.data.next;
+			cur.data.next = prev;
 			prev = cur;
 			cur = next ;
 		}
@@ -122,18 +123,18 @@ public class Solution1 {
 		int n = 0;
 		if(0==i) {
 			//head = null;
-			head = head.next;
+			head = head.data.next;
 			return ;
 		}
 		while(cur!=null) {
 			if(n==i) {
-				prev.next = cur.next;
+				prev.data.next = cur.data.next;
 				break;
 			}
 			n++;
 			prev = cur;
 		
-			cur = cur.next;
+			cur = cur.data.next;
 			
 		
 		}
@@ -161,7 +162,8 @@ public class Solution1 {
 		lists.add(8);
 		lists.display();
 		System.out.println();
-		//lists.reverseBetween(2,6);
+		ListNode head = new ListNode();
+		lists.reverseBetween(head,2,6);
 		lists.display();
 		//t2-t1-t3
 	
